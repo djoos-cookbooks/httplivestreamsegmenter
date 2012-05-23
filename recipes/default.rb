@@ -8,15 +8,20 @@
 include_recipe "build-essential"
 include_recipe "git"
 
-git "#{Chef::Config[:file_cache_path]}/http-live-stream-segmenter" do
-  repository node[:httplivestreamsegmenter][:git_repository]
-  reference node[:httplivestreamsegmenter][:git_revision]
-  action :sync
-  notifies :run, "bash[compile_httplivestreamsegmenter]"
+#install libssl-dev (libcrypto)
+package "libssl-dev" do
+  action :install
 end
 
-# Write the flags used to compile the application to Disk. If the flags
-# do not match those that are in the compiled_flags attribute - we recompile
+git "#{Chef::Config[:file_cache_path]}/http-live-stream-segmenter" do
+	repository node[:httplivestreamsegmenter][:git_repository]
+	reference node[:httplivestreamsegmenter][:git_revision]
+	action :sync
+	notifies :run, "bash[compile_httplivestreamsegmenter]"
+end
+
+#Write the flags used to compile the application to disk. If the flags
+#do not match those that are in the compiled_flags attribute - we recompile
 template "#{Chef::Config[:file_cache_path]}/httplivestreamsegmenter-compiled_with_flags" do
 	source "compiled_with_flags.erb"
 	owner "root"
@@ -28,9 +33,12 @@ template "#{Chef::Config[:file_cache_path]}/httplivestreamsegmenter-compiled_wit
 	notifies :run, "bash[compile_httplivestreamsegmenter]"
 end
 
-bash "make_httplivestreamsegmenter" do
-	cwd "#{Chef::Config[:file_cache_path]}/httplivestreamsegmenter"
+bash "compile_httplivestreamsegmenter" do
+	cwd "#{Chef::Config[:file_cache_path]}/http-live-stream-segmenter"
 	code <<-EOH
+		touch README
+		autoreconf
+		automake --add-missing
 		./configure --prefix=#{node[:httplivestreamsegmenter][:prefix]} #{node[:httplivestreamsegmenter][:compile_flags].join(' ')}
 		make clean && make && make install
 	EOH
