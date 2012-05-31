@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chef-httplivestreamsegmenter
+# Cookbook Name:: httplivestreamsegmenter
 # Attributes:: default
 #
 # Copyright 2012, Escape Studios
