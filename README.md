@@ -23,8 +23,8 @@ Attributes
 ==========
 
 * `node['httplivestreamsegmenter']['prefix']` - Location prefix of where the installation files will go
-* `node['httplivestreamsegmenter']['git_repository']` - Location of the source subversion repository
-* `node['httplivestreamsegmenter']['git_revision']` - Revision of the subversion repository to install
+* `node['httplivestreamsegmenter']['git_repository']` - Location of the source git repository
+* `node['httplivestreamsegmenter']['git_revision']` - Revision of the git repository to install
 * `node['httplivestreamsegmenter']['compile_flags']` - Array of flags to use in compilation process
 
 Usage
