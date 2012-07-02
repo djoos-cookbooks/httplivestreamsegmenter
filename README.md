@@ -4,7 +4,7 @@ Description
 This cookbook provides an easy way to install the HTTP live stream segmenter.
 
 More information?
-https://github.com/VRT-medialab/HTTP-Live-Stream-Segmenter
+https://github.com/VRT-onderzoek-en-innovatie/HTTP-Live-Stream-Segmenter
 
 Requirements
 ============
@@ -38,7 +38,7 @@ Usage
 References
 ==========
 
-* [VRT Medialab HTTP-Live-Stream-Segmenter on github] (https://github.com/VRT-medialab/HTTP-Live-Stream-Segmenter)
+* [VRT onderzoek en innovatie HTTP-Live-Stream-Segmenter on github] (https://github.com/VRT-onderzoek-en-innovatie/HTTP-Live-Stream-Segmenter)
 
 License and Authors
 ===================
