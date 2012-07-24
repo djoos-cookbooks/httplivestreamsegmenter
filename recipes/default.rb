@@ -8,9 +8,9 @@
 include_recipe "build-essential"
 include_recipe "git"
 
-#install libssl-dev (libcrypto)
+#libssl-dev (libcrypto)
 package "libssl-dev" do
-  action :install
+  action :upgrade
 end
 
 git "#{Chef::Config[:file_cache_path]}/http-live-stream-segmenter" do
@@ -42,4 +42,5 @@ bash "compile_httplivestreamsegmenter" do
 		./configure --prefix=#{node[:httplivestreamsegmenter][:prefix]} #{node[:httplivestreamsegmenter][:compile_flags].join(' ')}
 		make clean && make && make install
 	EOH
+	action :nothing
 end

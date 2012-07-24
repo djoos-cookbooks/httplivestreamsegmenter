@@ -40,6 +40,13 @@ References
 
 * [VRT onderzoek en innovatie HTTP-Live-Stream-Segmenter on github] (https://github.com/VRT-onderzoek-en-innovatie/HTTP-Live-Stream-Segmenter)
 
+CHANGELOG :
+===========
+
+### 0.0.5
+    * don't run compilation more than necessary
+    * upgrade libssl-dev package
+
 License and Authors
 ===================
 
