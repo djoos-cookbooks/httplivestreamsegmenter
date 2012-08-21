@@ -40,8 +40,8 @@ References
 
 * [VRT onderzoek en innovatie HTTP-Live-Stream-Segmenter on github] (https://github.com/VRT-onderzoek-en-innovatie/HTTP-Live-Stream-Segmenter)
 
-CHANGELOG :
-===========
+Changelog
+=========
 
 ### 0.0.6
     * only run compilation when creates file is not present
