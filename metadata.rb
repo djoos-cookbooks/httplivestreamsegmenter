@@ -3,9 +3,10 @@ maintainer_email "dev@escapestudios.com"
 license          "MIT"
 description      "Installs/Configures httplivestreamsegmenter"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.0.5"
+version          "0.0.6"
 
-supports "ubuntu", "10.04"
+supports "ubuntu"
+supports "debian"
 
 depends "build-essential"
 depends "git"

@@ -13,15 +13,20 @@ package "libssl-dev" do
   action :upgrade
 end
 
+creates = "#{node[:httplivestreamsegmenter][:prefix]}/bin/MpegtsH264"
+
+file "#{creates}" do
+	action :nothing
+end
+
 git "#{Chef::Config[:file_cache_path]}/http-live-stream-segmenter" do
 	repository node[:httplivestreamsegmenter][:git_repository]
 	reference node[:httplivestreamsegmenter][:git_revision]
 	action :sync
-	notifies :run, "bash[compile_httplivestreamsegmenter]"
+	notifies :delete, "file[#{creates}]"
 end
 
-#Write the flags used to compile the application to disk. If the flags
-#do not match those that are in the compiled_flags attribute - we recompile
+#write the flags used to compile to disk
 template "#{Chef::Config[:file_cache_path]}/httplivestreamsegmenter-compiled_with_flags" do
 	source "compiled_with_flags.erb"
 	owner "root"
@@ -30,7 +35,7 @@ template "#{Chef::Config[:file_cache_path]}/httplivestreamsegmenter-compiled_wit
 	variables(
 		:compile_flags => node[:httplivestreamsegmenter][:compile_flags]
 	)
-	notifies :run, "bash[compile_httplivestreamsegmenter]"
+	notifies :delete, "file[#{creates}]"
 end
 
 bash "compile_httplivestreamsegmenter" do
@@ -42,5 +47,5 @@ bash "compile_httplivestreamsegmenter" do
 		./configure --prefix=#{node[:httplivestreamsegmenter][:prefix]} #{node[:httplivestreamsegmenter][:compile_flags].join(' ')}
 		make clean && make && make install
 	EOH
-	action :nothing
+	creates "#{creates}"
 end

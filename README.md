@@ -43,6 +43,10 @@ References
 CHANGELOG :
 ===========
 
+### 0.0.6
+    * only run compilation when creates file is not present
+    * delete creates file when new source is available and/or compile flags have changed
+
 ### 0.0.5
     * don't run compilation more than necessary
     * upgrade libssl-dev package
