@@ -23,7 +23,7 @@ git "#{Chef::Config[:file_cache_path]}/http-live-stream-segmenter" do
 	repository node[:httplivestreamsegmenter][:git_repository]
 	reference node[:httplivestreamsegmenter][:git_revision]
 	action :sync
-	notifies :delete, "file[#{creates}]"
+	notifies :delete, "file[#{creates}]", :immediately
 end
 
 #write the flags used to compile to disk
@@ -35,7 +35,7 @@ template "#{Chef::Config[:file_cache_path]}/httplivestreamsegmenter-compiled_wit
 	variables(
 		:compile_flags => node[:httplivestreamsegmenter][:compile_flags]
 	)
-	notifies :delete, "file[#{creates}]"
+	notifies :delete, "file[#{creates}]", :immediately
 end
 
 bash "compile_httplivestreamsegmenter" do

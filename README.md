@@ -43,6 +43,9 @@ References
 Changelog
 =========
 
+### 0.0.7
+    * bugfix - delete creates immediately
+
 ### 0.0.6
     * only run compilation when creates file is not present
     * delete creates file when new source is available and/or compile flags have changed
